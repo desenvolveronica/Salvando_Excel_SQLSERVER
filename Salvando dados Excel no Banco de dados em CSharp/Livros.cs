@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,8 +26,14 @@ namespace Salvando_dados_Excel_no_Banco_de_dados_em_CSharp
             Unitario = unitario;
 
         }
+        public DataTable GetLivros()
+        {
+            return Excel.GetLivros();//classe excel é static por isso nao precisa instanciar
+        }
 
-
-
+        public bool AdicionarLivros()
+        {
+            return true;
+        }
     }
 }

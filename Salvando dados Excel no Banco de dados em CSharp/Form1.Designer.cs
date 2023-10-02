@@ -33,11 +33,12 @@
             // 
             // btnSalvar
             // 
-            this.btnSalvar.Location = new System.Drawing.Point(181, 161);
+            this.btnSalvar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSalvar.Location = new System.Drawing.Point(178, 202);
             this.btnSalvar.Name = "btnSalvar";
-            this.btnSalvar.Size = new System.Drawing.Size(75, 23);
+            this.btnSalvar.Size = new System.Drawing.Size(75, 46);
             this.btnSalvar.TabIndex = 0;
-            this.btnSalvar.Text = "button1";
+            this.btnSalvar.Text = "Salvar";
             this.btnSalvar.UseVisualStyleBackColor = true;
             // 
             // Form1
@@ -47,7 +48,8 @@
             this.ClientSize = new System.Drawing.Size(451, 301);
             this.Controls.Add(this.btnSalvar);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Salvar excel no Banco de Dados";
             this.ResumeLayout(false);
 
         }

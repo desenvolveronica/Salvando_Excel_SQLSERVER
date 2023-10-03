@@ -33,7 +33,7 @@ namespace Salvando_dados_Excel_no_Banco_de_dados_em_CSharp
 
         public bool AdicionarLivros()
         {
-            return true;
+            return DataBase.AdicionarLivros(this);//this é a propria classe
         }
     }
 }

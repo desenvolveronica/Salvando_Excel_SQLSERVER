@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.Remoting.Contexts;
@@ -15,10 +16,43 @@ namespace Salvando_dados_Excel_no_Banco_de_dados_em_CSharp
         private static string server = @"VERONICAPC\SQLSERVER1993";
         private static string dataBase = "Livraria";
 
+        public static string MsgErro { get; private set; }
+
         public static string StrCon
         {
             get { return $"Data Source = {server};Initial Catalog = {dataBase}; Integrated Security = True; Connect Timeout = 30; Encrypt=False;Trust Server Certificate=False;ApplicationIntent = ReadWrite; MultiSubnetFailover=False";  }
         }
 
+        public static bool AdicionarLivros(Livros livro)
+        {
+            try
+            {
+                using (SqlConnection cn = new SqlConnection(StrCon))
+                {
+                    cn.Open();
+                    var sql = "INSERT INTO Livros (Titulo, Isbn, Autores,Assuntos, Unitario) values (@Titulo, @Isbn, @Autores, @Assuntos, @Unitario)";
+
+                    using (SqlCommand cmd = new SqlCommand(sql, cn))
+                    {
+                        cmd.Parameters.AddWithValue("@Titulo", livro.Titulo);
+                        cmd.Parameters.AddWithValue("@Isbn", livro.Isbn);
+                        cmd.Parameters.AddWithValue("@Autores", livro.Autores);
+                        cmd.Parameters.AddWithValue("@Assuntos", livro.Assuntos);
+                        cmd.Parameters.AddWithValue("@Unitario", livro.Unitario.ToString().Replace(",","."));
+
+                        cmd.ExecuteNonQuery();
+                    }
+
+                }
+                    MsgErro = "";
+                return true;
+            }
+            catch (Exception ex)
+            {
+
+                MsgErro = ex.Message;
+                return false;
+            }
+        }
     }
 }

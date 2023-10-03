@@ -17,23 +17,30 @@ namespace Salvando_dados_Excel_no_Banco_de_dados_em_CSharp
 
         public Livros() { }//construtor padrão
 
-        public Livros(string titulo, string isbn, string autores, string assunto, decimal unitario)//construtor
+        public Livros(string titulo, string isbn, string autores, string assuntos, string v, decimal unitario)//construtor
         {//propriedades = parâmetros
             Titulo = titulo;
             Isbn = isbn;
             Autores = autores;
-            Assuntos = assunto;
+            Assuntos = assuntos;
             Unitario = unitario;
 
         }
-        public DataTable GetLivros()
+        public List<Livros> GetLivros()
         {
-            return Excel.GetLivros();//classe excel é static por isso nao precisa instanciar
+            var listaLivros = new List<Livros>();
+            var dt = Excel.GetLivros();//classe excel é static por isso nao precisa instanciar
+
+            foreach (DataRow item in dt.Rows)
+                listaLivros.Add(new Livros(item["título"].ToString(), item["isbn"].ToString(), item["isbn"].ToString(), item["autores"].ToString(), item["assuntos"].ToString(), Convert.ToDecimal(item["unitário"])));
+
+
+            return listaLivros;
         }
 
-        public bool AdicionarLivros()
+        public bool AdicionarLivros(Livros livro)
         {
-            return DataBase.AdicionarLivros(this);//this é a propria classe
+            return DataBase.AdicionarLivros(livro);
         }
     }
 }

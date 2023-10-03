@@ -20,7 +20,7 @@ namespace Salvando_dados_Excel_no_Banco_de_dados_em_CSharp
 
         public static string StrCon
         {
-            get { return $"Data Source = {server};Initial Catalog = {dataBase}; Integrated Security = True; Connect Timeout = 30; Encrypt=False;Trust Server Certificate=False;ApplicationIntent = ReadWrite; MultiSubnetFailover=False";  }
+            get { return @"Data Source=VERONICAPC\SQLSERVER1993;Initial Catalog=Livraria;Integrated Security=True"; }
         }
 
         public static bool AdicionarLivros(Livros livro)

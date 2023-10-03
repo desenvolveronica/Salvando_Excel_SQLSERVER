@@ -16,5 +16,19 @@ namespace Salvando_dados_Excel_no_Banco_de_dados_em_CSharp
         {
             InitializeComponent();
         }
+
+        private void btnSalvar_Click(object sender, EventArgs e)
+        {
+            var livro = new Livros();
+            var listaLivros = livro.GetLivros();
+
+            foreach(var livroItem in listaLivros)
+            {
+                
+                if (!livro.AdicionarLivros(livroItem))
+                    MessageBox.Show(DataBase.MsgErro);
+            }
+            MessageBox.Show("Processo encerrado");
+        }
     }
 }
